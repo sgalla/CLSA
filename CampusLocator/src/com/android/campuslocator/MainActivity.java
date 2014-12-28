@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -25,7 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapDemoActivity extends FragmentActivity{
+public class MainActivity extends FragmentActivity{
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap map;
@@ -35,12 +38,43 @@ public class MapDemoActivity extends FragmentActivity{
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
 	 */
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
+		switch(item.getItemId())
+		{
+		case R.id.menu_button:
+			Intent i = new Intent(this, SubActivity.class);
+			startActivityForResult(i, 100);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == 100)
+		{
+			Bundle b = data.getExtras();
+		}
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.map_demo_activity);
+		setContentView(R.layout.main_activity);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = mapFragment.getMap();
 		
@@ -90,4 +124,5 @@ public class MapDemoActivity extends FragmentActivity{
 		}
 
 	}
+	
 }
