@@ -8,4 +8,7 @@
 	<string name="destination_list">Destinations</string>
 	<string name="action_search">Search</string>
 	<string name="action_help">Help</string>
+	<string name="numerical">List by Number</string>
+	<string name="alphabetical">List by Name</string>
+	<string name="sort">Sort</string>
 </resources>

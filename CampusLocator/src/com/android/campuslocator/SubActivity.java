@@ -20,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 public class SubActivity extends Activity{
@@ -53,11 +55,28 @@ public class SubActivity extends Activity{
 	{
 		super.onCreate(savedInstanceState);
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
+	    setContentView(R.layout.sub_activity);
 	    
-	 /*   ListView listView = (ListView) findViewById(R.id.listView1);
+	    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
+	    radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
+	    {
+	    	public void onCheckedChanged(RadioGroup group, int checkedId)
+	    	{
+	    		switch(checkedId)
+	    		{
+	    		case R.id.radioAlphabetically:
+	    			//CALL METHOD TO SORT LIST ALPHABETICALLY BY NAME
+	    		case R.id.radioNumerically:
+	    			//CALL METHOD TO SORT LIST NUMERICALLY
+	    		}
+	    	}
+	    });
+	    
+	    ListView listView = (ListView) findViewById(R.id.listView1);
 	    
 	    String[] sampleValues = new String[] {"This", "Is", "A", "Hard-coded", 
-	    		"Sample", "List", "Of", "Items", "Blah", "Shannon"};
+	    		"Sample", "List", "Of", "Items", "Blah", "Shannon", "Making", "This", "Really", "Long", "So that",
+	    		"It is", "Definitely", "Scrollable", "Hi, Joseph!"};
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
 	    		sampleValues);
 	    
@@ -69,6 +88,7 @@ public class SubActivity extends Activity{
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
+				//LOCATION SELECTED, BACK TO MAP
 				
 			}
 
@@ -77,7 +97,7 @@ public class SubActivity extends Activity{
 				// TODO Auto-generated method stub
 				
 			}
-	    });*/
+	    });
 	    
 	}
 }
