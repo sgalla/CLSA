@@ -17,8 +17,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -71,12 +74,27 @@ public class SubActivity extends Activity{
 	    		}
 	    	}
 	    });
+	   
+	    TXTAdapter adapter;
+	    ListView listview = (ListView)findViewById(R.id.listView1);
+	    adapter = new TXTAdapter(this, -1);
+	    listview.setAdapter(adapter);
 	    
+	    listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+			}
+	    });
+	    
+	    
+	    /*
 	    ListView listView = (ListView) findViewById(R.id.listView1);
 	    
-	    String[] sampleValues = new String[] {"This", "Is", "A", "Hard-coded", 
-	    		"Sample", "List", "Of", "Items", "Blah", "Shannon", "Making", "This", "Really", "Long", "So that",
-	    		"It is", "Definitely", "Scrollable", "Hi, Joseph!"};
+	    
+	    String[] sampleValues = new String[] {"Buildings", "Blue Phones", "Computer Pods"};
 	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
 	    		sampleValues);
 	    
@@ -90,14 +108,16 @@ public class SubActivity extends Activity{
 				// TODO Auto-generated method stub
 				//LOCATION SELECTED, BACK TO MAP
 				
+				
 			}
+			
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
 				
 			}
-	    });
+	    });*/
 	    
 	}
 }
