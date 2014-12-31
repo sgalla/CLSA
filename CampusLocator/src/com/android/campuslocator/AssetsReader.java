@@ -1,5 +1,11 @@
 package com.android.campuslocator;
 
+/*
+ * class AssetReader used for abqbuildings.txt. needs to be modified to support all
+ * text files we will be using (easy task). all objects set as string type.
+ * perhaps change this rather than converting later on??
+ */
+
 import java.io.IOException;
 import java.io.InputStream;
 

@@ -1,5 +1,15 @@
 package com.android.campuslocator;
 
+/*
+ * This is a custom adapter class that is made to take data from the abqbuildings.txt
+ * and display it within the list view. eventually need to modify so that way it 
+ * will gather data from all txt files and display in listview.
+ * 
+ * last method converts string to double and will be used when location is clicked on
+ * so that lat and long are passed to map methods as doubles and not strings
+ */
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+
 
 public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 	Context ctx;
@@ -31,7 +43,7 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 		if(null == mView) {
 			mView = new TextView(parent.getContext());
-			mView.setTextSize(28);
+			mView.setTextSize(14);
 		}
 		
 		mView.setText(getItem(pos).getTitle());
@@ -73,5 +85,8 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 	}
 	
-
+	public double convertStringToDouble (String arg) {
+		double aDouble = Double.parseDouble(arg);
+		return aDouble;
+	}
 }

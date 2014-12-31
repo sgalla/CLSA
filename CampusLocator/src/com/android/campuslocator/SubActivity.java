@@ -75,21 +75,32 @@ public class SubActivity extends Activity{
 	    	}
 	    });
 	   
+	    // create object adapter from TXTAdapter class
 	    TXTAdapter adapter;
+	    
+	    // get id of the listview we are using (only one)
 	    ListView listview = (ListView)findViewById(R.id.listView1);
+	    
+	    // -1 value is dummy, constructor of TXTAdapter required it
 	    adapter = new TXTAdapter(this, -1);
 	    listview.setAdapter(adapter);
 	    
+	    // on item click what do we want to do?? 
+	    /* in theory we want to send the lat and long coordinates to the 
+	     * map methods to display the location on the map.
+	     */
 	    listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
+
 			}
 	    });
 	    
 	    
+	    // SHANNONS EXAMPLE CODE
 	    /*
 	    ListView listView = (ListView) findViewById(R.id.listView1);
 	    
