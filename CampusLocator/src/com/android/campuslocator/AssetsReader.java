@@ -15,10 +15,10 @@ import android.util.Log;
 
 public class AssetsReader {
 	
-	private String title;
-	private String latitude;
-	private String longitude;
-	private String buildingNum;
+	public String title;
+	public String latitude;
+	public String longitude;
+	public String buildingNum;
 
 	public String getBuildingNum() {
 		return buildingNum;

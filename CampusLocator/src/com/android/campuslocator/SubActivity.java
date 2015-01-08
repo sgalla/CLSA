@@ -44,6 +44,10 @@ public class SubActivity extends Activity{
 		{
 		case R.id.search_action:
 			//CODE HERE FOR SEARCH ON CLICK OF SEARCH ICON
+			
+			
+			
+			
 			return true;
 		case R.id.help:
 			//CODE HERE FOR HELP TOOLTIP WHEN HELP ICON CLICKED
@@ -71,6 +75,7 @@ public class SubActivity extends Activity{
 	    			//CALL METHOD TO SORT LIST ALPHABETICALLY BY NAME
 	    		case R.id.radioNumerically:
 	    			//CALL METHOD TO SORT LIST NUMERICALLY
+	    			//
 	    		}
 	    	}
 	    });
@@ -94,41 +99,25 @@ public class SubActivity extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				 
 				// TODO Auto-generated method stub
-
-			}
-	    });
-	    
-	    
-	    // SHANNONS EXAMPLE CODE
-	    /*
-	    ListView listView = (ListView) findViewById(R.id.listView1);
-	    
-	    
-	    String[] sampleValues = new String[] {"Buildings", "Blue Phones", "Computer Pods"};
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-	    		sampleValues);
-	    
-	    listView.setAdapter(adapter);
-	    
-	    listView.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				//LOCATION SELECTED, BACK TO MAP
+				// set up an intent to pass data when item from row is clicked
 				
+				Intent intent = new Intent(SubActivity.this, MainActivity.class);
 				
+				//intent.putExtra("latitude", AssetsReader.getLatitude());
+				//intent.putExtra("longitude", AssetsReader.getLongitude());
+				//setResult(RESULT_OK, intent);
+				startActivityForResult(intent, 0);
+
 			}
 			
-
-			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
 				
 			}
-	    });*/
+	    });
+	    
 	    
 	}
 }

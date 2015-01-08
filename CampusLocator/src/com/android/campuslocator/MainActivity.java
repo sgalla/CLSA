@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -22,11 +23,13 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.maps.GeoPoint;
 
 public class MainActivity extends FragmentActivity{
 
@@ -34,6 +37,14 @@ public class MainActivity extends FragmentActivity{
 	private GoogleMap map;
 	public Location loc;
 	Marker location;
+	String latitude;
+	String longitude;
+	double lat, longi;
+	Intent intent = getIntent();
+	
+	//MapView mapView = (MapView) findViewById(R.id.mapView);
+	//mapView.setBuiltInZoomControls(true);
+	
 	/*
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
@@ -65,9 +76,12 @@ public class MainActivity extends FragmentActivity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == 100)
+		if(resultCode == 0 && data != null)
 		{
-			Bundle b = data.getExtras();
+			latitude = data.getStringExtra("latitude");
+			longitude = data.getStringExtra("longitude");
+
+			Toast.makeText(this, "intent passed!", Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -77,6 +91,7 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.main_activity);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = mapFragment.getMap();
+
 		
 		while (map.equals(null))
 			map = mapFragment.getMap();
@@ -109,6 +124,8 @@ public class MainActivity extends FragmentActivity{
 					
 				}
 			});
+		
+		
 		map.setMyLocationEnabled(true);
 		if (mapFragment != null) {
 			map = mapFragment.getMap();
@@ -123,6 +140,11 @@ public class MainActivity extends FragmentActivity{
 			Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
 		}
 
+		
+	}
+	public static double convertStringToDouble (String arg) {
+		double aDouble = Double.parseDouble(arg);
+		return aDouble;
 	}
 	
 }

@@ -43,17 +43,18 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 		if(null == mView) {
 			mView = new TextView(parent.getContext());
-			mView.setTextSize(14);
+			mView.setTextSize(16);
 		}
 		
-		mView.setText(getItem(pos).getTitle());
+		mView.setText(getItem(pos).getBuildingNum() + " " + getItem(pos).getTitle());
+		//mView.setText(getItem(pos).getBuildingNum());
 		
 		return mView;
 	}
 	
 	
 	
-	private void loadArrayFromFile() {
+	public void loadArrayFromFile() {
 		
 		
 		try {
@@ -85,8 +86,5 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 	}
 	
-	public double convertStringToDouble (String arg) {
-		double aDouble = Double.parseDouble(arg);
-		return aDouble;
-	}
+
 }
