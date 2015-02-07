@@ -46,8 +46,10 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			mView.setTextSize(16);
 		}
 		
+		//mView.setText(getItem(pos).getBuildingNum() + " " + getItem(pos).getTitle() + " " + getItem(pos).getLatitude() + " " + getItem(pos).getLongitude());
 		mView.setText(getItem(pos).getBuildingNum() + " " + getItem(pos).getTitle());
-		//mView.setText(getItem(pos).getBuildingNum());
+		
+		
 		
 		return mView;
 	}
@@ -55,7 +57,6 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 	
 	
 	public void loadArrayFromFile() {
-		
 		
 		try {
 		// get stream and buffer reader for file
@@ -67,14 +68,19 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			while ((line = reader.readLine()) != null) {
 			
 			// split to separate the attributes in text file
+				int i = 0;
 				String[] RowData = line.split(",");
+				//for (int x = 0; x < RowData.length; x++) {
 			
 			// create objects for rowdata
-				AssetsReader current = new AssetsReader();
-				current.setTitle(RowData[0]); // grab the title from file
-				current.setBuildingNum(RowData[1]); // grab the building num
-				current.setLatitude(RowData[2]); // grab lat
-				current.setLongitude(RowData[3]); // grab long
+					AssetsReader current = new AssetsReader();
+					current.setTitle(RowData[0]); // grab the title from file
+					current.setBuildingNum(RowData[1]); // grab the building num
+					current.setLongitude(RowData[2]); // grab lat
+					current.setLatitude(RowData[3]); // grab long
+				
+				//}
+				
 			
 			// add object to array list
 				this.add(current);

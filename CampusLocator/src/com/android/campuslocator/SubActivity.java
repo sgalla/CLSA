@@ -28,7 +28,10 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 public class SubActivity extends Activity{
-
+	
+	 // create object adapter from TXTAdapter class
+    TXTAdapter adapter;
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -79,9 +82,6 @@ public class SubActivity extends Activity{
 	    		}
 	    	}
 	    });
-	   
-	    // create object adapter from TXTAdapter class
-	    TXTAdapter adapter;
 	    
 	    // get id of the listview we are using (only one)
 	    ListView listview = (ListView)findViewById(R.id.listView1);
@@ -95,7 +95,7 @@ public class SubActivity extends Activity{
 	     * map methods to display the location on the map.
 	     */
 	    listview.setOnItemClickListener(new OnItemClickListener() {
-
+	    AssetsReader AR = new AssetsReader();
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -105,10 +105,15 @@ public class SubActivity extends Activity{
 				
 				Intent intent = new Intent(SubActivity.this, MainActivity.class);
 				
-				//intent.putExtra("latitude", AssetsReader.getLatitude());
-				//intent.putExtra("longitude", AssetsReader.getLongitude());
-				//setResult(RESULT_OK, intent);
-				startActivityForResult(intent, 0);
+				Toast.makeText(SubActivity.this, adapter.getItem(arg2).getLatitude(), Toast.LENGTH_LONG).show();
+				Toast.makeText(SubActivity.this, adapter.getItem(arg2).getLongitude(), Toast.LENGTH_LONG).show();
+				
+				intent.putExtra("latitude", adapter.getItem(arg2).getLatitude());
+				intent.putExtra("longitude", adapter.getItem(arg2).getLongitude());
+				//intent.putExtra("latitude", AR.getLatitude());
+				//intent.putExtra("longitude", AR.getLongitude());
+
+				startActivity(intent);
 
 			}
 			
@@ -117,7 +122,10 @@ public class SubActivity extends Activity{
 				
 			}
 	    });
+	    	
+	    	
+	    	
+	    };
 	    
 	    
 	}
-}

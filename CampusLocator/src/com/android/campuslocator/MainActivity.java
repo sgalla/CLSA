@@ -39,8 +39,7 @@ public class MainActivity extends FragmentActivity{
 	Marker location;
 	String latitude;
 	String longitude;
-	double lat, longi;
-	Intent intent = getIntent();
+
 	
 	//MapView mapView = (MapView) findViewById(R.id.mapView);
 	//mapView.setBuiltInZoomControls(true);
@@ -72,18 +71,6 @@ public class MainActivity extends FragmentActivity{
 		}
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode == 0 && data != null)
-		{
-			latitude = data.getStringExtra("latitude");
-			longitude = data.getStringExtra("longitude");
-
-			Toast.makeText(this, "intent passed!", Toast.LENGTH_LONG).show();
-		}
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
@@ -91,6 +78,29 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.main_activity);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = mapFragment.getMap();
+		
+		// bundle and intent used to change camera location if user has selected coordinates from list
+		Bundle intent = getIntent().getExtras();
+		//if (intent != null && intent.getString("latitude") != null && intent.getString("longitude") != null) {
+		if (intent != null) {
+			double lat, longi;
+			
+			latitude = intent.getString("latitude");
+			longitude = intent.getString("longitude");
+			
+			lat = convertStringToDouble(latitude);
+			longi = convertStringToDouble(longitude);
+			
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 10);
+			map.animateCamera(cameraUpdate);
+			
+			LatLng buildingSelected = new LatLng(lat, longi);
+			map.addMarker(new MarkerOptions()
+					.position(buildingSelected)
+					.title("the title")
+					.snippet("here is a snippet"));
+			
+		}
 
 		
 		while (map.equals(null))
@@ -101,7 +111,7 @@ public class MainActivity extends FragmentActivity{
 				
 				@Override
 				public void onLocationChanged(Location arg0) {
-					map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(arg0.getLatitude(), arg0.getLongitude()), 15));
+					//map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(arg0.getLatitude(), arg0.getLongitude()), 15));
 
 				}
 
