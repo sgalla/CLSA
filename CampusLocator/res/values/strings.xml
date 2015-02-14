@@ -11,4 +11,5 @@
 	<string name="numerical">List by Number</string>
 	<string name="alphabetical">List by Name</string>
 	<string name="sort">Sort</string>
+	<string name="str_rb_walking">Walking</string>
 </resources>

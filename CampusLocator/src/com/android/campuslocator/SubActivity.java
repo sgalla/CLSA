@@ -29,7 +29,8 @@ import android.widget.Toast;
 
 public class SubActivity extends Activity{
 	
-	 // create object adapter from TXTAdapter class
+	// create object adapter from TXTAdapter class
+	// needs to be declared global to entire class 
     TXTAdapter adapter;
 	
 	@Override
@@ -47,10 +48,7 @@ public class SubActivity extends Activity{
 		{
 		case R.id.search_action:
 			//CODE HERE FOR SEARCH ON CLICK OF SEARCH ICON
-			
-			
-			
-			
+
 			return true;
 		case R.id.help:
 			//CODE HERE FOR HELP TOOLTIP WHEN HELP ICON CLICKED
