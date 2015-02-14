@@ -1,31 +1,17 @@
 package com.android.campuslocator;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.location.*;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
 
 public class SubActivity extends Activity{
 
@@ -50,7 +36,8 @@ public class SubActivity extends Activity{
 			
 			return true;
 		case R.id.help:
-			//CODE HERE FOR HELP TOOLTIP WHEN HELP ICON CLICKED
+			Intent i = new Intent(this, HelpPage.class);
+			startActivity(i);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -67,7 +54,8 @@ public class SubActivity extends Activity{
 	    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
 	    radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
 	    {
-	    	public void onCheckedChanged(RadioGroup group, int checkedId)
+	    	@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId)
 	    	{
 	    		switch(checkedId)
 	    		{
@@ -112,10 +100,6 @@ public class SubActivity extends Activity{
 
 			}
 			
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
 	    });
 	    
 	    

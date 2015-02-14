@@ -1,35 +1,19 @@
 package com.android.campuslocator;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.location.*;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-//import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-//import com.google.android.maps.GeoPoint;
 
 public class MainActivity extends FragmentActivity{
 
@@ -67,6 +51,11 @@ public class MainActivity extends FragmentActivity{
 			Intent i = new Intent(this, SubActivity.class);
 			startActivityForResult(i, 100);
 			return true;
+		case R.id.help:
+			Intent i2 = new Intent(this, HelpPage.class);
+			startActivity(i2);
+			return true;	
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -81,7 +70,7 @@ public class MainActivity extends FragmentActivity{
 			latitude = data.getStringExtra("latitude");
 			longitude = data.getStringExtra("longitude");
 
-			Toast.makeText(this, "intent passed!", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "UNM Main Campus", Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -91,13 +80,13 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.main_activity);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = mapFragment.getMap();
-
+		map.getUiSettings().setZoomControlsEnabled(true);
 		
 		while (map.equals(null))
 			map = mapFragment.getMap();
-		
+		    
 		LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, (long)100, 0.2f, new LocationListener() {
+		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 0.2f, new LocationListener() {
 				
 				@Override
 				public void onLocationChanged(Location arg0) {
@@ -129,15 +118,18 @@ public class MainActivity extends FragmentActivity{
 		map.setMyLocationEnabled(true);
 		if (mapFragment != null) {
 			map = mapFragment.getMap();
+			
 			if (map != null) {
-				Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "UNM Main Campus", Toast.LENGTH_LONG).show();
 			} 
 			else {
-				Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Map failed! Please restart your device"
+						+ "or see our Help page", Toast.LENGTH_LONG).show();
 			}
 		} 
 		else {
-			Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Map failed! Please restart your device"
+						+ "or see our Help page", Toast.LENGTH_LONG).show();
 		}
 
 		

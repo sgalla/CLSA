@@ -6,12 +6,7 @@ package com.android.campuslocator;
  * perhaps change this rather than converting later on??
  */
 
-import java.io.IOException;
-import java.io.InputStream;
 
-import android.app.Activity;
-import android.content.res.AssetManager;
-import android.util.Log;
 
 public class AssetsReader {
 	

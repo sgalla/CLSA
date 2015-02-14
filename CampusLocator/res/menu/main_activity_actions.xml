@@ -6,4 +6,10 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:showAsAction="always" />
+    <item android:id="@+id/help"
+          android:icon="@drawable/ic_action_help"
+          android:title="@string/action_help"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:showAsAction="always" />
 </menu>
