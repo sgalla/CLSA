@@ -14,6 +14,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import com.android.campuslocator.AssetsReader;
 
 import android.content.Context;
 import android.view.View;
@@ -25,6 +30,7 @@ import android.widget.TextView;
 
 public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 	Context ctx;
+	private ArrayList<AssetsReader> buildings = new ArrayList<AssetsReader>();
 
 	public TXTAdapter(Context context, int resource) {
 		super(context, resource);
@@ -77,6 +83,7 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 				current.setLongitude(RowData[3]); // grab long
 			
 			// add object to array list
+				buildings.add(current);
 				this.add(current);
 			}
 		}
@@ -84,6 +91,36 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void sortAlphabetically() {
+		Collections.sort(buildings, new Comparator<AssetsReader>() {
+
+			@Override
+			public int compare(AssetsReader lhs, AssetsReader rhs) {
+				return lhs.getTitle().compareTo(rhs.getTitle());
+			}
+			
+		});
+		
+		clear();
+		addAll(buildings);
+		notifyDataSetChanged();
+	}
+	
+	public void sortNumerically() {
+		Collections.sort(buildings, new Comparator<AssetsReader>() {
+
+			@Override
+			public int compare(AssetsReader lhs, AssetsReader rhs) {
+				return lhs.getBuildingNum().compareTo(rhs.getBuildingNum());
+			}
+			
+		});
+		
+		clear();
+		addAll(buildings);
+		notifyDataSetChanged();
 	}
 	
 
