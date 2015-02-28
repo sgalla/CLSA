@@ -25,14 +25,6 @@ public class MainActivity extends FragmentActivity{
 	String longitude;
 	double lat, longi;
 	Intent intent = getIntent();
-	
-	//MapView mapView = (MapView) findViewById(R.id.mapView);
-	//mapView.setBuiltInZoomControls(true);
-	
-	/*
-	 * Define a request code to send to Google Play services This code is
-	 * returned in Activity.onActivityResult
-	 */
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -47,11 +39,11 @@ public class MainActivity extends FragmentActivity{
 	{
 		switch(item.getItemId())
 		{
-		case R.id.menu_button:
+		case R.id.menu_button:   //********//
 			Intent i = new Intent(this, SubActivity.class);
 			startActivityForResult(i, 100);
 			return true;
-		case R.id.help:
+		case R.id.help:        //********//
 			Intent i2 = new Intent(this, HelpPage.class);
 			startActivity(i2);
 			return true;	
@@ -69,8 +61,6 @@ public class MainActivity extends FragmentActivity{
 		{
 			latitude = data.getStringExtra("latitude");
 			longitude = data.getStringExtra("longitude");
-
-			Toast.makeText(this, "UNM Main Campus", Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -80,38 +70,45 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.main_activity);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = mapFragment.getMap();
-		map.getUiSettings().setZoomControlsEnabled(true);
+		map.getUiSettings().setZoomControlsEnabled(true);  //********//
+		map.getUiSettings().setZoomGesturesEnabled(true);  //********//
+		map.getUiSettings().setRotateGesturesEnabled(true); //********//
+		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);   //********//
 		
 		while (map.equals(null))
 			map = mapFragment.getMap();
 		    
 		LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 0.2f, new LocationListener() {
+		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 1, new LocationListener() {
+
+			@Override
+			public void onLocationChanged(Location arg0) {
+				map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+						new LatLng(arg0.getLatitude(), arg0
+								.getLongitude()), 15));
+				// TODO Auto-generated method stub
 				
-				@Override
-				public void onLocationChanged(Location arg0) {
-					map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(arg0.getLatitude(), arg0.getLongitude()), 15));
+			}
 
-				}
+			@Override
+			public void onProviderDisabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
 
-				@Override
-				public void onProviderDisabled(String provider) {
-					// TODO Auto-generated method stub
-					
-				}
+			@Override
+			public void onProviderEnabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
 
-				@Override
-				public void onProviderEnabled(String provider) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onStatusChanged(String provider, int status,
-						Bundle extras) {
-					// TODO Auto-generated method stub
-					
-				}
+			@Override
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {
+				// TODO Auto-generated method stub
+				
+			}
+				
 			});
 		
 		
@@ -120,9 +117,8 @@ public class MainActivity extends FragmentActivity{
 			map = mapFragment.getMap();
 			
 			if (map != null) {
-				Toast.makeText(this, "UNM Main Campus", Toast.LENGTH_LONG).show();
-			} 
-			else {
+			}
+			else {			
 				Toast.makeText(this, "Map failed! Please restart your device"
 						+ "or see our Help page", Toast.LENGTH_LONG).show();
 			}
@@ -130,13 +126,7 @@ public class MainActivity extends FragmentActivity{
 		else {
 			Toast.makeText(this, "Map failed! Please restart your device"
 						+ "or see our Help page", Toast.LENGTH_LONG).show();
-		}
+		}	
+	}
 
-		
-	}
-	public static double convertStringToDouble (String arg) {
-		double aDouble = Double.parseDouble(arg);
-		return aDouble;
-	}
-	
 }

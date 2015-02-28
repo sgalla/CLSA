@@ -37,6 +37,7 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 	}
 	
+	@Override
 	public View getView (final int pos, View convertView, final ViewGroup parent) {
 		
 		TextView mView = (TextView) convertView;
