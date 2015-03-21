@@ -11,4 +11,9 @@
 	<string name="numerical">List by Number</string>
 	<string name="alphabetical">List by Name</string>
 	<string name="sort">Sort</string>
+	<string name="building">Buildings</string>
+	<string name="parking">Parking</string>
+	<string name="computer_labs">Computer Pods</string>
+	<string name="food">Dining</string>
+	<string name="dorms">Dorms/Housing</string>
 </resources>
