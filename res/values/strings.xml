@@ -12,6 +12,11 @@
     <string name="numerical">List by Number</string>
     <string name="alphabetical">List by Name</string>
     <string name="sort">Sort</string>
+    <string name="building">Buildings</string>
+	<string name="parking">Parking</string>
+	<string name="computer_labs">Computer Pods</string>
+	<string name="food">Dining</string>
+	<string name="dorms">Dorms/Housing</string>
     <string name="help_body"><b>\t Welcome to our help page and thank you for using our app.
 	    	We are currently in the development phase of our project and
 	    	will have a beta-tested app available for download at the 

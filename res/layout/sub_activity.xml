@@ -26,6 +26,12 @@
             android:text="@string/numerical" />
     </RadioGroup>
 
+    <EditText android:id="@+id/inputSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search locations..."
+        android:inputType="textVisiblePassword"/>
+    
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
