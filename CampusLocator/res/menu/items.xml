@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    	<item
+        android:id="@+id/buildings"
+        android:title="@string/building"/>
+    	
+    	<item
+        android:id="@+id/parking"
+        android:title="@string/parking"
+    	/>
+    	
+    	<item
+        android:id="@+id/computer_labs"
+        android:title="@string/computer_labs"
+    	/>
+    	
+    	<item
+        android:id="@+id/food"
+        android:title="@string/food"
+    	/>
+    	
+    	<item
+        android:id="@+id/dorms"
+        android:title="@string/dorms"
+    	/>
+   </menu>

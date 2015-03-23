@@ -14,6 +14,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.content.Context;
 import android.view.View;
@@ -25,6 +29,7 @@ import android.widget.TextView;
 
 public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 	Context ctx;
+	private ArrayList<AssetsReader> buildings = new ArrayList<AssetsReader>();
 
 	public TXTAdapter(Context context, int resource) {
 		super(context, resource);
@@ -45,9 +50,10 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			mView = new TextView(parent.getContext());
 			mView.setTextSize(16);
 		}
-		
+	
 		mView.setText(getItem(pos).getBuildingNum() + " " + getItem(pos).getTitle());
 		//mView.setText(getItem(pos).getBuildingNum());
+		//mView.setText(getItem(pos).getTitle());
 		
 		return mView;
 	}
@@ -77,6 +83,7 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 				current.setLongitude(RowData[3]); // grab long
 			
 			// add object to array list
+				buildings.add(current);
 				this.add(current);
 			}
 		}
@@ -85,6 +92,50 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		}
 		
 	}
+
+	public void sortAlphabetically() {
+		Collections.sort(buildings, new Comparator<AssetsReader>() {
+
+			@Override
+			public int compare(AssetsReader lhs, AssetsReader rhs) {
+				return lhs.getTitle().compareTo(rhs.getTitle());
+			}
+			
+		});
+		
+		clear();
+		addAll(buildings);
+		notifyDataSetChanged();
+	}
 	
+	public void sortNumerically() {
+		Collections.sort(buildings, new Comparator<AssetsReader>() {
+
+			@Override
+			public int compare(AssetsReader lhs, AssetsReader rhs) {
+				return lhs.getBuildingNum().compareTo(rhs.getBuildingNum());
+			}
+			
+		});
+		
+		clear();
+		addAll(buildings);
+		notifyDataSetChanged();
+	}
+	
+	public void search(CharSequence s){
+		
+		ArrayList<AssetsReader> tempList = new ArrayList<AssetsReader>();
+		for (AssetsReader building : buildings){
+			String tempTitle = building.getTitle().toLowerCase();
+			s.toString().toLowerCase();
+			if (tempTitle.contains(s))
+				tempList.add(building);
+		}
+		
+		clear();
+		addAll(tempList);
+		notifyDataSetChanged();
+	}
 
 }
